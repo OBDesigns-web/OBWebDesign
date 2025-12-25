@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Design Pricing | OBWebDesigns</title>
+  <meta name="description" content="Transparent pricing for professional web design services. From starter sites to custom enterprise solutions. Find the perfect package for your business.">
+  <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === ANIMATIONS FROM HOMEPAGE === */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-float-delayed { animation: float 6s ease-in-out infinite; animation-delay: -3s; }
+    .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+    .animate-shimmer { 
+      background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent); 
+      background-size: 200% 100%; 
+      animation: shimmer 3s infinite; 
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .animate-scale-in { animation: scaleIn 0.6s ease-out forwards; }
+    
+    /* Pricing card hover effects */
+    .pricing-card {
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+    }
+    .pricing-card:hover .card-glow {
+      opacity: 1;
+    }
+    .card-glow {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0a0f 0%, #0d1117 50%, #0a0a0f 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white">
+
+  <!-- ================= FIXED FULL-PAGE BACKGROUND ================= -->
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <!-- Gradient Orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl animate-pulse-glow" 
+         style="background: radial-gradient(circle, #06b6d4 0%, transparent 70%);"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl animate-pulse-glow" 
+         style="background: radial-gradient(circle, #0ea5e9 0%, transparent 70%); animation-delay: -2s;"></div>
+    <div class="absolute top-2/3 left-1/2 w-72 h-72 rounded-full opacity-10 blur-3xl animate-pulse-glow" 
+         style="background: radial-gradient(circle, #06b6d4 0%, transparent 70%); animation-delay: -4s;"></div>
+    
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 opacity-5" 
+         style="background-image: linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="fixed top-0 left-0 right-0 z-50"
+       style="background: rgba(10,10,15,.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(56,189,248,.1);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="index.html"
+           class="flex items-center gap-3 text-xl sm:text-2xl font-semibold tracking-tight">
+          <img src="assets/icons/logo-icon.svg" alt="OB Logo" class="w-9 h-9 sm:w-10 sm:h-10">
+          <span><span class="text-white">OBWeb</span><span style="color: #06b6d4;">Designs</span></span>
+        </a>
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-300 p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        
+        <div class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="text-sm text-gray-300 hover:text-cyan-400 transition">Home</a>
+          <a href="portfolio.html" class="text-sm text-gray-300 hover:text-cyan-400 transition">Portfolio</a>
+          <a href="pricing.html" class="text-sm text-cyan-400 font-medium">Pricing</a>
+          <a href="contact.html" class="text-sm text-gray-300 hover:text-cyan-400 transition">Contact</a>
+          <button onclick="window.location.href='contact.html'"
+                  class="px-5 py-2.5 text-sm font-medium rounded-lg transition-all hover:scale-105"
+                  style="background: linear-gradient(135deg,#0ea5e9,#06b6d4); box-shadow:0 0 20px rgba(6,182,212,.3);">
+            Start Project
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col space-y-3 pt-4" style="border-top: 1px solid rgba(56,189,248,.1);">
+          <a href="index.html" class="text-base text-gray-300 hover:text-cyan-400 transition-colors py-2">Home</a>
+          <a href="portfolio.html" class="text-base text-gray-300 hover:text-cyan-400 transition-colors py-2">Portfolio</a>
+          <a href="pricing.html" class="text-base text-cyan-400 font-medium py-2">Pricing</a>
+          <a href="contact.html" class="text-base text-gray-300 hover:text-cyan-400 transition-colors py-2">Contact</a>
+          <button onclick="window.location.href='contact.html'" class="w-full px-5 py-3 text-sm font-medium rounded-lg mt-4" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
+            Start Project
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= PAGE HEADER WITH ANIMATED BACKGROUND ================= -->
+  <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    
+    <!-- Background Effects -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Gradient Orbs -->
+      <div class="absolute top-20 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl animate-pulse-glow" 
+           style="background: radial-gradient(circle, #06b6d4 0%, transparent 70%);"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl animate-pulse-glow" 
+           style="background: radial-gradient(circle, #0ea5e9 0%, transparent 70%); animation-delay: -2s;"></div>
+
+      <!-- Grid Pattern -->
+      <div class="absolute inset-0 opacity-5" 
+           style="background-image: linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+      <!-- Floating Elements -->
+      <div class="absolute top-32 left-10 w-2 h-2 rounded-full bg-cyan-400 opacity-60 animate-float"></div>
+      <div class="absolute top-48 right-20 w-3 h-3 rounded-full bg-cyan-500 opacity-40 animate-float-delayed"></div>
+      <div class="absolute bottom-40 left-1/4 w-2 h-2 rounded-full bg-cyan-300 opacity-50 animate-float"></div>
+      <div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 rounded-full bg-cyan-400 opacity-70 animate-float-delayed"></div>
+    </div>
+
+    <!-- Header Content -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <span class="inline-block px-4 py-1.5 text-xs font-medium rounded-full mb-6 animate-fade-in-up"
+            style="background: rgba(6,182,212,.1); color:#06b6d4; border:1px solid rgba(6,182,212,.2);">
+        Simple Pricing
+      </span>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 animate-fade-in-up"
+          style="background: linear-gradient(135deg,#ffffff,#94a3b8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation-delay: 0.1s;">
+        Pricing Plans
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
+        Transparent pricing. No hidden fees. Built to scale with your goals.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PRICING CARDS WITH ENHANCED EFFECTS ================= -->
+  <section class="relative pb-32 px-4 sm:px-6 lg:px-8">
+    
+    <!-- Background gradient overlay -->
+    <div class="absolute inset-0 pointer-events-none" 
+         style="background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.3) 50%, transparent 100%);"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- STARTER -->
+      <div class="pricing-card group rounded-2xl p-8 relative animate-scale-in"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px); animation-delay: 0.1s;">
+        <!-- Hover glow effect -->
+        <div class="card-glow absolute inset-0 rounded-2xl pointer-events-none" 
+             style="background: radial-gradient(circle at center, rgba(6,182,212,0.1), transparent); opacity: 0;"></div>
+        
+        <div class="relative">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-all group-hover:scale-110"
+               style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(14, 165, 233, 0.1)); border: 1px solid rgba(6, 182, 212, 0.3);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+              <path d="M12 2L2 7l10 5l10-5l-10-5z"/>
+              <path d="M2 17l10 5l10-5"/>
+              <path d="M2 12l10 5l10-5"/>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">Starter</h3>
+          <p class="text-sm text-gray-400 mb-6">Perfect for small projects</p>
+
+          <div class="mb-6">
+            <span class="text-4xl font-semibold text-white">$299</span>
+            <span class="text-gray-500 text-sm ml-2">one-time</span>
+          </div>
+
+          <ul class="space-y-3 text-sm text-gray-400 mb-8">
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              1–2 pages
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Mobile responsive
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Modern dark-tech design
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Basic SEO setup
+            </li>
+          </ul>
+
+          <button onclick="window.location.href='contact.html'"
+                  class="w-full py-3 rounded-lg text-sm font-medium transition-all hover:-translate-y-1 group-hover:shadow-lg"
+                  style="background: rgba(6,182,212,.1); border:1px solid rgba(6,182,212,.3); color:#06b6d4;">
+            Get Started
+          </button>
+        </div>
+      </div>
+
+      <!-- PRO (FEATURED) -->
+      <div class="pricing-card group rounded-2xl p-8 relative animate-scale-in"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.9), rgba(15,23,42,.6)); border:2px solid rgba(6,182,212,.4); box-shadow:0 0 30px rgba(6,182,212,.25); backdrop-filter: blur(10px); animation-delay: 0.2s;">
+        
+        <!-- Most Popular Badge -->
+        <span class="absolute -top-3 right-6 text-xs font-medium px-3 py-1 rounded-full animate-pulse"
+              style="background: linear-gradient(135deg,#0ea5e9,#06b6d4); box-shadow: 0 0 20px rgba(6,182,212,0.4);">
+          Most Popular
+        </span>
+
+        <!-- Extra glow for featured card -->
+        <div class="card-glow absolute inset-0 rounded-2xl pointer-events-none" 
+             style="background: radial-gradient(circle at center, rgba(6,182,212,0.15), transparent); opacity: 0;"></div>
+        
+        <div class="relative">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-all group-hover:scale-110"
+               style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(14, 165, 233, 0.2)); border: 1px solid rgba(6, 182, 212, 0.5);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">Pro</h3>
+          <p class="text-sm text-gray-400 mb-6">Best for businesses</p>
+
+          <div class="mb-6">
+            <span class="text-4xl font-semibold text-white">$599</span>
+            <span class="text-gray-500 text-sm ml-2">one-time</span>
+          </div>
+
+          <ul class="space-y-3 text-sm text-gray-300 mb-8">
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              3–5 pages
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Portfolio or gallery
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Conversion-focused layout
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              SEO optimized
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Performance tuning
+            </li>
+          </ul>
+
+          <button onclick="window.location.href='contact.html'"
+                  class="w-full py-3 rounded-lg text-sm font-medium transition-all hover:-translate-y-1 hover:shadow-xl"
+                  style="background: linear-gradient(135deg,#0ea5e9,#06b6d4); box-shadow:0 0 20px rgba(6,182,212,.4);">
+            Start Pro
+          </button>
+        </div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="pricing-card group rounded-2xl p-8 relative animate-scale-in"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px); animation-delay: 0.3s;">
+        <!-- Hover glow effect -->
+        <div class="card-glow absolute inset-0 rounded-2xl pointer-events-none" 
+             style="background: radial-gradient(circle at center, rgba(6,182,212,0.1), transparent); opacity: 0;"></div>
+        
+        <div class="relative">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-all group-hover:scale-110"
+               style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(14, 165, 233, 0.1)); border: 1px solid rgba(6, 182, 212, 0.3);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+              <path d="M12 2L2 7l10 5l10-5l-10-5z"/>
+              <path d="M2 17l10 5l10-5"/>
+              <path d="M2 12l10 5l10-5"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">Premium</h3>
+          <p class="text-sm text-gray-400 mb-6">For serious brands</p>
+
+          <div class="mb-6">
+            <span class="text-4xl font-semibold text-white">$999</span>
+            <span class="text-gray-500 text-sm ml-2">starting at</span>
+          </div>
+
+          <ul class="space-y-3 text-sm text-gray-400 mb-8">
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Full multi-page site
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Advanced UI & animations
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Custom features
+            </li>
+            <li class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Ongoing support options
+            </li>
+          </ul>
+
+          <button onclick="window.location.href='contact.html'"
+                  class="w-full py-3 rounded-lg text-sm font-medium transition-all hover:-translate-y-1 group-hover:shadow-lg"
+                  style="background: rgba(6,182,212,.1); border:1px solid rgba(6,182,212,.3); color:#06b6d4;">
+            Request Quote
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Additional Info Section -->
+    <div class="max-w-4xl mx-auto mt-20 text-center">
+      <div class="rounded-2xl p-8 animate-fade-in-up" 
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px); animation-delay: 0.5s;">
+        <h3 class="text-2xl font-semibold mb-4 text-white">Need a Custom Solution?</h3>
+        <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
+          Every project is unique. If none of our packages fit your needs perfectly, 
+          let's discuss a custom solution tailored specifically for your goals.
+        </p>
+        <button onclick="window.location.href='contact.html'"
+                class="px-8 py-3 text-sm font-medium rounded-lg transition-all hover:-translate-y-1 inline-flex items-center gap-2"
+                style="background: linear-gradient(135deg,#0ea5e9,#06b6d4); box-shadow:0 0 20px rgba(6,182,212,.3);">
+          <span>Let's Talk</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14m-7-7l7 7l-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= FAQ SECTION ================= -->
+    <div class="max-w-4xl mx-auto mt-20">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 text-xs font-medium rounded-full mb-4"
+              style="background: rgba(6,182,212,.1); color:#06b6d4; border:1px solid rgba(6,182,212,.2);">
+          FAQ
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-semibold mb-4"
+            style="background: linear-gradient(135deg,#ffffff,#94a3b8); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Everything you need to know about working with us.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1);">
+          <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">How long does a typical project take?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5">
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Project timelines vary based on complexity. A simple landing page typically takes 1-2 weeks, 
+              a business website 2-4 weeks, and larger projects like e-commerce stores can take 4-8 weeks. 
+              We'll provide a detailed timeline during our initial consultation.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1);">
+          <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">What do I need to provide to get started?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5">
+            <p class="text-gray-400 text-sm leading-relaxed">
+              To get started, we'll need your logo (if you have one), brand colors, content (text and images), 
+              and any examples of websites you like. Don't worry if you don't have everything ready—we can 
+              help guide you through the process and even assist with content creation.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1);">
+          <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">How many revisions are included?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5">
+            <p class="text-gray-400 text-sm leading-relaxed">
+              All our packages include 2-3 rounds of revisions. We work closely with you throughout the 
+              design process to ensure you're happy with the direction before moving to development. 
+              Additional revisions beyond the included rounds can be accommodated at an hourly rate.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1);">
+          <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">Do you offer hosting and maintenance?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5">
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Yes! We offer optional hosting and maintenance packages to keep your site running smoothly. 
+              This includes security updates, backups, uptime monitoring, and minor content updates. 
+              We can also help you set up your own hosting if you prefer to manage it yourself.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1);">
+          <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">What is your payment structure?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5">
+            <p class="text-gray-400 text-sm leading-relaxed">
+              We typically require a 50% deposit to begin work, with the remaining 50% due upon project 
+              completion before the final handoff. For larger projects, we can arrange milestone-based 
+              payments. We accept bank transfers, credit cards, and PayPal.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item rounded-xl overflow-hidden" style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1);">
+          <button class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">Will my website be mobile-friendly?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5">
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Absolutely! All our websites are built with a mobile-first approach and are fully responsive 
+              across all devices—phones, tablets, and desktops. We test on multiple screen sizes to ensure 
+              a seamless experience for all your visitors.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER WITH ENHANCED STYLING ================= -->
+  <footer class="pt-20 px-4 sm:px-6 lg:px-8"
+          style="background: rgba(15,23,42,.4); border-top:1px solid rgba(56,189,248,.1);">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10">
+        
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="assets/icons/logo-icon.svg" alt="OB Logo" class="w-10 h-10">
+            <h3 class="text-xl font-semibold tracking-tight">
+              <span class="text-white">OBWeb</span><span style="color: #06b6d4;">Designs</span>
+            </h3>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed max-w-md mb-6">
+            Premium web design and development for ambitious brands. We build
+            high-converting websites that look amazing and drive results.
+          </p>
+          <button onclick="window.location.href='contact.html'" 
+                  class="px-6 py-3 text-sm font-medium rounded-lg transition-all hover:-translate-y-1" 
+                  style="background: linear-gradient(135deg, #0ea5e9, #06b6d4); box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);">
+            Start a Project
+          </button>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-medium text-white mb-4">Company</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
+            <li><a href="portfolio.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Portfolio</a></li>
+            <li><a href="pricing.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Pricing</a></li>
+            <li><a href="contact.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-medium text-white mb-4">Connect</h4>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" 
+               style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6c2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4c-.9-4.2 4-6.6 7-3.8c1.1 0 3-1.2 3-1.2z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" 
+               style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6M2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" 
+               style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8A4 4 0 0 1 16 11.37m1.5-4.87h.01"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" 
+           style="border-top: 1px solid rgba(56, 189, 248, 0.1);">
+        <p class="text-xs text-gray-500">© 2024 OBWebDesigns. All rights reserved.</p
+        <div class="flex gap-6">
+          <a href="privacy.html" class="text-xs text-gray-500 hover:text-gray-400 transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="text-xs text-gray-500 hover:text-gray-400 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      mobileMenu.querySelectorAll("a, button").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+    }
+
+    // FAQ Accordion
+    document.querySelectorAll(".faq-trigger").forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector(".faq-icon");
+        
+        // Close all other FAQs
+        document.querySelectorAll(".faq-content").forEach(item => {
+          if (item !== content) {
+            item.classList.add("hidden");
+          }
+        });
+        document.querySelectorAll(".faq-icon").forEach(ic => {
+          if (ic !== icon) {
+            ic.style.transform = "rotate(0deg)";
+          }
+        });
+        
+        // Toggle current FAQ
+        content.classList.toggle("hidden");
+        icon.style.transform = content.classList.contains("hidden") ? "rotate(0deg)" : "rotate(180deg)";
+      });
+    });
+  </script>
+
+</body>
+</html>

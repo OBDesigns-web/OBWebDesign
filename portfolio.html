@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Work | OBWebDesigns Portfolio</title>
+  <meta name="description" content="Explore our portfolio of stunning websites. See examples of our web design work including business sites, e-commerce stores, landing pages, and more.">
+  <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === ANIMATIONS FROM HOMEPAGE === */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-float-delayed { animation: float 6s ease-in-out infinite; animation-delay: -3s; }
+    .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+    .animate-shimmer { 
+      background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent); 
+      background-size: 200% 100%; 
+      animation: shimmer 3s infinite; 
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    
+    /* Project card hover effects */
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+    .project-image {
+      transition: transform 0.5s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0a0f 0%, #0d1117 50%, #0a0a0f 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white">
+
+  <!-- ================= FIXED FULL-PAGE BACKGROUND ================= -->
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <!-- Gradient Orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl animate-pulse-glow" 
+         style="background: radial-gradient(circle, #06b6d4 0%, transparent 70%);"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl animate-pulse-glow" 
+         style="background: radial-gradient(circle, #0ea5e9 0%, transparent 70%); animation-delay: -2s;"></div>
+    <div class="absolute top-2/3 left-1/2 w-72 h-72 rounded-full opacity-10 blur-3xl animate-pulse-glow" 
+         style="background: radial-gradient(circle, #06b6d4 0%, transparent 70%); animation-delay: -4s;"></div>
+    
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 opacity-5" 
+         style="background-image: linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="fixed top-0 left-0 right-0 z-50"
+       style="background: rgba(10,10,15,.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(56,189,248,.1);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="index.html"
+           class="flex items-center gap-3 text-xl sm:text-2xl font-semibold tracking-tight">
+          <img src="assets/icons/logo-icon.svg" alt="OB Logo" class="w-9 h-9 sm:w-10 sm:h-10">
+          <span><span class="text-white">OBWeb</span><span style="color: #06b6d4;">Designs</span></span>
+        </a>
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-300 p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        
+        <div class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="text-sm text-gray-300 hover:text-cyan-400 transition">Home</a>
+          <a href="portfolio.html" class="text-sm text-cyan-400 font-medium">Portfolio</a>
+          <a href="pricing.html" class="text-sm text-gray-300 hover:text-cyan-400 transition">Pricing</a>
+          <a href="contact.html" class="text-sm text-gray-300 hover:text-cyan-400 transition">Contact</a>
+          <button onclick="window.location.href='contact.html'"
+                  class="px-5 py-2.5 text-sm font-medium rounded-lg transition-all hover:scale-105"
+                  style="background: linear-gradient(135deg,#0ea5e9,#06b6d4); box-shadow:0 0 20px rgba(6,182,212,.3);">
+            Start Project
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col space-y-3 pt-4" style="border-top: 1px solid rgba(56,189,248,.1);">
+          <a href="index.html" class="text-base text-gray-300 hover:text-cyan-400 transition-colors py-2">Home</a>
+          <a href="portfolio.html" class="text-base text-cyan-400 font-medium py-2">Portfolio</a>
+          <a href="pricing.html" class="text-base text-gray-300 hover:text-cyan-400 transition-colors py-2">Pricing</a>
+          <a href="contact.html" class="text-base text-gray-300 hover:text-cyan-400 transition-colors py-2">Contact</a>
+          <button onclick="window.location.href='contact.html'" class="w-full px-5 py-3 text-sm font-medium rounded-lg mt-4" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
+            Start Project
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= PAGE HEADER WITH ANIMATED BACKGROUND ================= -->
+  <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    
+    <!-- Background Effects (same as homepage) -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Gradient Orbs -->
+      <div class="absolute top-20 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl animate-pulse-glow" 
+           style="background: radial-gradient(circle, #06b6d4 0%, transparent 70%);"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl animate-pulse-glow" 
+           style="background: radial-gradient(circle, #0ea5e9 0%, transparent 70%); animation-delay: -2s;"></div>
+
+      <!-- Grid Pattern -->
+      <div class="absolute inset-0 opacity-5" 
+           style="background-image: linear-gradient(rgba(6, 182, 212, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+      <!-- Floating Elements -->
+      <div class="absolute top-32 left-10 w-2 h-2 rounded-full bg-cyan-400 opacity-60 animate-float"></div>
+      <div class="absolute top-48 right-20 w-3 h-3 rounded-full bg-cyan-500 opacity-40 animate-float-delayed"></div>
+      <div class="absolute bottom-40 left-1/4 w-2 h-2 rounded-full bg-cyan-300 opacity-50 animate-float"></div>
+      <div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 rounded-full bg-cyan-400 opacity-70 animate-float-delayed"></div>
+    </div>
+
+    <!-- Header Content -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <span class="inline-block px-4 py-1.5 text-xs font-medium rounded-full mb-6 animate-fade-in-up"
+            style="background: rgba(6,182,212,.1); color:#06b6d4; border:1px solid rgba(6,182,212,.2);">
+        Our Work
+      </span>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 animate-fade-in-up"
+          style="background: linear-gradient(135deg,#ffffff,#94a3b8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation-delay: 0.1s;">
+        Portfolio
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
+        A selection of websites and digital experiences built with precision,
+        performance, and dark-tech polish.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PORTFOLIO GRID WITH ENHANCED EFFECTS ================= -->
+  <section class="relative pb-32 px-4 sm:px-6 lg:px-8">
+    
+    <!-- Background gradient overlay -->
+    <div class="absolute inset-0 pointer-events-none" 
+         style="background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.3) 50%, transparent 100%);"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- PROJECT CARD 1 -->
+      <div class="project-card group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px);">
+        <div class="h-48 overflow-hidden">
+          <img src="assets/images/business-website.png" alt="Business Website" class="project-image w-full h-full object-cover object-top">
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            Business Website
+          </h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Modern multi-page business website with premium UI and responsive layout.
+          </p>
+          <a href="contact.html" class="inline-flex items-center gap-2 text-sm text-cyan-400 hover:gap-3 transition-all">
+            Want something like this?
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7l-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT CARD 2 -->
+      <div class="project-card group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px);">
+        <div class="h-48 overflow-hidden">
+          <img src="assets/images/landing-page.png" alt="Landing Page" class="project-image w-full h-full object-cover object-top">
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            Landing Page
+          </h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Conversion-focused landing page designed to capture leads fast.
+          </p>
+          <a href="pricing.html" class="inline-flex items-center gap-2 text-sm text-cyan-400 hover:gap-3 transition-all">
+            View pricing
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7l-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT CARD 3 -->
+      <div class="project-card group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px);">
+        <div class="h-48 overflow-hidden">
+          <img src="assets/images/portfolio-site.png" alt="Portfolio Site" class="project-image w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            Portfolio Site
+          </h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Clean personal or agency portfolio with bold visuals and smooth flow.
+          </p>
+          <a href="contact.html" class="inline-flex items-center gap-2 text-sm text-cyan-400 hover:gap-3 transition-all">
+            Start your project
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7l-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Add more project cards with the same structure -->
+      <div class="project-card group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px);">
+        <div class="h-48 overflow-hidden">
+          <img src="assets/images/ecommerce-store.png" alt="E-Commerce Store" class="project-image w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            E-Commerce Store
+          </h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Full-featured online store with cart, checkout, and payment integration.
+          </p>
+          <a href="contact.html" class="inline-flex items-center gap-2 text-sm text-cyan-400 hover:gap-3 transition-all">
+            Get started
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7l-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px);">
+        <div class="h-48 overflow-hidden">
+          <img src="assets/images/saas-platform.png" alt="SaaS Platform" class="project-image w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            SaaS Platform
+          </h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Modern SaaS landing page with feature showcase and pricing tiers.
+          </p>
+          <a href="pricing.html" class="inline-flex items-center gap-2 text-sm text-cyan-400 hover:gap-3 transition-all">
+            View details
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7l-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+           style="background: linear-gradient(135deg, rgba(15,23,42,.8), rgba(15,23,42,.4)); border:1px solid rgba(56,189,248,.1); backdrop-filter: blur(10px);">
+        <div class="h-48 overflow-hidden">
+          <img src="assets/images/agency-website.png" alt="Agency Website" class="project-image w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-medium text-white mb-2 group-hover:text-cyan-400 transition-colors">
+            Agency Website
+          </h3>
+          <p class="text-sm text-gray-400 mb-4">
+            Professional agency site with team profiles and case studies.
+          </p>
+          <a href="contact.html" class="inline-flex items-center gap-2 text-sm text-cyan-400 hover:gap-3 transition-all">
+            Learn more
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7l-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER WITH ENHANCED STYLING ================= -->
+  <footer class="pt-20 px-4 sm:px-6 lg:px-8"
+          style="background: rgba(15,23,42,.4); border-top:1px solid rgba(56,189,248,.1);">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10">
+        
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="assets/icons/logo-icon.svg" alt="OB Logo" class="w-10 h-10">
+            <h3 class="text-xl font-semibold tracking-tight">
+              <span class="text-white">OBWeb</span><span style="color: #06b6d4;">Designs</span>
+            </h3>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed max-w-md mb-6">
+            Premium web design and development for ambitious brands. We build
+            high-converting websites that look amazing and drive results.
+          </p>
+          <button onclick="window.location.href='contact.html'" 
+                  class="px-6 py-3 text-sm font-medium rounded-lg transition-all hover:-translate-y-1" 
+                  style="background: linear-gradient(135deg, #0ea5e9, #06b6d4); box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);">
+            Start a Project
+          </button>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-medium text-white mb-4">Company</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
+            <li><a href="portfolio.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Portfolio</a></li>
+            <li><a href="pricing.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Pricing</a></li>
+            <li><a href="contact.html" class="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-medium text-white mb-4">Connect</h4>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" 
+               style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6c2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4c-.9-4.2 4-6.6 7-3.8c1.1 0 3-1.2 3-1.2z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" 
+               style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6M2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:-translate-y-1" 
+               style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8A4 4 0 0 1 16 11.37m1.5-4.87h.01"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" 
+           style="border-top: 1px solid rgba(56, 189, 248, 0.1);">
+        <p class="text-xs text-gray-500">© 2024 OBWebDesigns. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="privacy.html" class="text-xs text-gray-500 hover:text-gray-400 transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="text-xs text-gray-500 hover:text-gray-400 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      mobileMenu.querySelectorAll('a, button').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
